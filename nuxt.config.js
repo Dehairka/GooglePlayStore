@@ -84,12 +84,11 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxt/content',
     '@nuxtjs/strapi',
     ['nuxt-twa-module', {
       /* module options */
-      defaultUrl: 'https://esteve.xyz',
-      hostName: 'esteve.xyz',
+      defaultUrl: 'https://free-play.store',
+      hostName: 'free-play.store',
       sha256Fingerprints: ['/* your SHA-256 keys */'],
       applicationId: 'com.example.example',
       launcherName: 'Google Play Store',
