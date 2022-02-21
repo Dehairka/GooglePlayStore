@@ -1,4 +1,4 @@
-# LaBattle
+# Free Play Store
 
 ## Build Setup
 
