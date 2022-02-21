@@ -1,0 +1,14 @@
+{
+    "title": "Photoshop Express",
+    "creator": "Adobe",
+    "category": "Photographie",
+    "toutPublic": false,
+    "pictureProfile": "photoshop.webp",
+    "slider": "photoshop2.webp",
+    "installation": 5800,
+    "size": "45Mo",
+    "version": "1.0.0",
+    "androidNecessary": "5 ou supérieure",
+    "longDescription": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum placeat optio rem omnis eligendi est nulla maiores possimus dolor delectus laborum repudiandae consequatur earum reiciendis, fugiat laudantium, a deleniti. Eius. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, consectetur fuga? Quod placeat error maiores. Nam, velit. Alias, ratione, commodi illo assumenda odio, ullam atque molestiae eligendi nobis sequi iste.",
+    "pouce": 657
+}
