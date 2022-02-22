@@ -2,8 +2,8 @@
   <div class="homePage">
     <section>
       <div class="title">
-        <h1>Top rated</h1>
-        <NuxtLink class="btn" to="/Aventure/">Plus</NuxtLink>
+        <h1>Applications</h1>
+        <NuxtLink class="btn" to="/Application/">Plus</NuxtLink>
       </div>
       <div class="articles">
       <!-- <SingleArticle v-for="(article, index) in apps" :key="index" :data="article"/> -->
@@ -12,11 +12,11 @@
     </section>
     <section>
       <div class="title">
-        <h1>Aventure</h1>
-        <NuxtLink class="btn" to="/Aventure/">Plus</NuxtLink>
+        <h1>Games</h1>
+        <NuxtLink class="btn" to="/Jeu/">Plus</NuxtLink>
       </div>
       <div class="articles">
-      <Slider category="Aventure" />
+      <Slider category="Jeu" />
     </div>
     </section>
   </div>

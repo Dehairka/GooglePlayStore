@@ -69,7 +69,8 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
         </div>
         <div class="content">
           <div class="content_slider">
-            <img :src="urlPicture(app[0].slider[0].url)" alt="cover article">
+            <img v-if="app[0].slider.length <= 1" :src="urlPicture(app[0].slider[0].url)" alt="cover article">
+            <SliderPicture v-else :data="app[0].slider"/>
           </div>
           <p>{{ app[0].longDescription }}</p>
         </div>
@@ -231,6 +232,7 @@ export default {
     this.app = await this.$strapi.find('apps', {
       slug: this.$route.params.product
     })
+    console.log(this.app[0].slider)
     this.relatedApps = await this.$strapi.find('apps')    
   },
   methods: {

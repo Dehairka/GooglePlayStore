@@ -1,7 +1,7 @@
 <template>
   <div class="swiper">
     <div class="swiper-wrapper">
-      <div v-for="(article, i) in apps.slice(0,5)" :key="i" class="swiper-slide" :class="`slide--${i}`">
+      <div v-for="(article, i) in apps" :key="i" class="swiper-slide" :class="`slide--${i}`">
         <SingleArticle :data="article"/>
       </div>
     </div>
@@ -27,7 +27,7 @@ export default {
       },
       category: {
         type: String,
-        default: ""
+        default: "Application"
       }
     },
     data(){
@@ -57,7 +57,7 @@ export default {
       // @see https://swiperjs.com/swiper-api#parameters
       direction: 'horizontal',
       loop: false,
-      slidesPerView: 2,
+      slidesPerView: 7,
       spaceBetween: 0,
       // remove unused modules if needed
       modules: [Navigation],
@@ -69,7 +69,7 @@ export default {
       },
       breakpoints: {
         1024: {
-            slidesPerView: 4.5,
+            slidesPerView: 7,
             spaceBetween: 100
         },
         768: {
@@ -91,20 +91,8 @@ export default {
 }
 </script>
 
-<style scoped>
-.swiper {
-  /* height: 300px; */
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
-.swiper-slide {
-  /* align-items: center;
-  display: flex;
-  justify-content: center; */
-  width: 220px;
-}
-.slider-content {
-  color: #000;
+<style lang="scss">
+.swiper-slide{
+  
 }
 </style>

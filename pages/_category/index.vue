@@ -2,7 +2,7 @@
   <div class="categoryPage">
     <section>
       <div class="title">
-        <h1>Les meilleurs téléchargements</h1>
+        <h1>{{ $route.params.category }}</h1>
       </div>
       <div class="articles">
       <SingleArticle v-for="(article, index) in apps" :key="index" :data="article"/>
