@@ -89,13 +89,18 @@ export default {
       padding: 8px;
       font-size: 0.8em;
       margin: 8px;
-      width: 14%;
-      min-width: 200px;
+      width: 200px;
       cursor: pointer;
       &:hover{
           img{
               filter: grayscale(1);
           }
+        }
+        h2{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
       img{
         width: 200px;
