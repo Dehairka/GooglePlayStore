@@ -105,7 +105,7 @@ dist
 
 # PWA Recommandation (docs)
 sw.*
-.android/
+android
 
 #Backend
 .backend/
