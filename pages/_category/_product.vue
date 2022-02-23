@@ -2,7 +2,8 @@
   <div class="singleProductPage">
     <section v-if="app[0]">
         <div class="header">
-            <img :src="urlPicture(app[0].pictureProfile.url)" alt="Picture's article">
+            <img v-if="app[0].pictureProfile" :src="urlPicture(app[0].pictureProfile.url)" alt="Picture's article">
+            <img v-else :src="require('@/assets/img/default.png')" alt="">
             <div class="title">
                 <h1>{{ app[0].title }}</h1>
                 <span>{{ app[0].creator }}</span>
@@ -69,10 +70,10 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
         </div>
         <div class="content">
           <div class="content_slider">
-            <img v-if="app[0].slider.length <= 1" :src="urlPicture(app[0].slider[0].url)" alt="cover article">
+            <img v-if="app[0].slider.length <= 1 && app[0].slider.length" :src="urlPicture(app[0].slider[0].url)" alt="cover article">
             <SliderPicture v-else :data="app[0].slider"/>
           </div>
-          <p>{{ app[0].longDescription }}</p>
+          <div v-html="app[0].longDescription"></div>
         </div>
         <DividerArticle />
         <div class="infos">
@@ -212,7 +213,7 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
     </section>
     <div class="relatedProducts">
       <h2>Articles similaires</h2>
-      <RelatedProduct v-for="(article, index) in relatedApps" :key="index" :data="article"/>
+      <RelatedProduct v-for="(article, index) in relatedApps.slice(0,6)" :key="index" :data="article"/>
     </div>
   </div>
 </template>
@@ -238,7 +239,7 @@ export default {
   methods: {
       urlPicture(url){
           return process.env.URL + url + ""
-      }
+        }
   }
 }
 </script>
@@ -266,7 +267,7 @@ body{
   section{
     background-color: $white;
     margin: 32px;
-    width: 50%;
+    width: 70%;
     padding: 16px;
     box-sizing: border-box;
 

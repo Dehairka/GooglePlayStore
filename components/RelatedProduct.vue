@@ -1,6 +1,7 @@
 <template>
     <div class="article" @click="goToPage('/categories/'+data.slug)">
-        <img :src="'https://strapi.esteve.xyz'+data.pictureProfile.url" alt="article picture">
+        <img v-if="data.pictureProfile" :src="urlPicture(data.pictureProfile.url)" alt="article picture">
+        <img v-else :src="require('@/assets/img/default.png')" alt="">
         <div class="content">
             <h2>{{ data.title }}</h2>
             <span>{{ data.creator }}</span>
@@ -74,6 +75,9 @@ export default {
             this.$router.push({
                 path: url
             })
+        },
+        urlPicture(url){
+          return process.env.URL + url + ""
         }
     }
 }

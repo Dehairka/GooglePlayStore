@@ -1,6 +1,7 @@
 <template>
     <div class="article" @click="goToPage('/categories/'+data.slug)">
-        <img :src="urlPicture(data.pictureProfile.url)" alt="article picture">
+        <img v-if="data.pictureProfile" :src="urlPicture(data.pictureProfile.url)" alt="article picture">
+        <img v-else :src="require('@/assets/img/default.png')" alt="">
         <h2>{{ data.title }}</h2>
         <span>{{ data.creator }}</span>
         <div class="stars">
@@ -74,7 +75,7 @@ export default {
             })
         },
         urlPicture(url){
-            return process.env.URL + url + ""
+          return process.env.URL + url + ""
         }
     }
 }
