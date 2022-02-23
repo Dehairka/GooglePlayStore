@@ -1,7 +1,7 @@
 <template>
   <div class="swiper">
     <div class="swiper-wrapper">
-      <div v-for="(article, i) in apps" :key="i" class="swiper-slide" :class="`slide--${i}`">
+      <div v-for="(article, i) in apps.slice(0,6)" :key="i" class="swiper-slide" :class="`slide--${i}`">
         <SingleArticle :data="article"/>
       </div>
     </div>
@@ -92,6 +92,10 @@ export default {
 </script>
 
 <style lang="scss">
+
+.swiper{
+  width: 100%;
+}
 .swiper-slide{
   
 }
