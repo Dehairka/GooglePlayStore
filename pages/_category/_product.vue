@@ -73,7 +73,8 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
             <img v-if="app[0].slider.length <= 1 && app[0].slider.length" :src="urlPicture(app[0].slider[0].url)" alt="cover article">
             <SliderPicture v-else :data="app[0].slider"/>
           </div>
-          <div v-html="app[0].longDescription"></div>
+          <!-- <div class="longDescription" v-html="app[0].longDescription"></div> -->
+          <read-more more-str="Read more" :text="app[0].longDescription" link="#" less-str="Read less" :max-chars="400"></read-more>
         </div>
         <DividerArticle />
         <div class="infos">
@@ -85,7 +86,7 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
             </li>
             <li>
               <h3>Taille</h3>
-              <span>{{ app[0].size }} Mo</span>
+              <span>{{ app[0].size }}o</span>
             </li>
             <li>
               <h3>Installation</h3>
@@ -278,7 +279,9 @@ body{
       .content .content_slider img{
         object-fit: cover;
         width: 100%;
+        
       }
+      
     }
     .header{
       display: flex;
@@ -326,13 +329,14 @@ body{
         
     }
     .content{
+      position: relative;
       &_slider{
         display: flex;
         justify-content: center;
         img{
           margin: 16px;
           width: 100%;
-          min-height: 300px;
+          min-height: 400px;
         }
         .default_slider{
           width: 100%;
@@ -340,6 +344,20 @@ body{
           background-color: $grey;
           margin: 16px;
         }
+      }
+      p{
+        position: relative;
+        top: 32px;
+      }
+      span{
+        display: flex;
+        justify-content: center;
+        background: rgb(255,255,255);
+        background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(0,0,0,0) 100%);
+        position: relative;
+        top: -16px;
+        padding-top: 32px;
+        bottom: 0;
       }
     }
     .infos{

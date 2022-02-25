@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -28,7 +30,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/plugins/vue-awesome-swiper', mode: 'client' }
+    { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
+    { src: '@/plugins/vue-read-more' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -102,6 +105,7 @@ export default {
       /* Overwrite folder where to put .wellknown */
       distFolder: '.nuxt/dist/client'
     }],
+    '@nuxtjs/auth',
   ],
   strapi: {
     url: "https://strapi.esteve.xyz" || "http://localhost:1337"
@@ -110,8 +114,27 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: process.env.URL,
   },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'auth/local',
+            method: 'post',
+            propertyName: 'jwt'
+          },
+          user: {
+            url: 'users/me',
+            method: 'get',
+            propertyName: false
+          },
+          logout: false
+        }
+      }
+    }
+   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
