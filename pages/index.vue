@@ -104,23 +104,14 @@ export default {
     }
   },
   async fetch(){
-    if(this.$cookies.isKey('apps')){
-      this.apps = JSON.parse(this.$cookies.get('apps'))
-      console.log("ON RECUP LE COOKIE", JSON.parse(this.$cookies.get('apps')))
-    }else{
       this.apps = await this.$strapi.find('apps', {
           category: 'Application',
           _limit: 6
         })
-        console.log("On créer le cookie")
-      window.$cookies.set('apps', JSON.stringify(this.apps))
-      console.log("ON RECUP LE COOKIE", JSON.parse(window.$cookies.get('apps')))
-
         this.games = await this.$strapi.find('apps', {
           category: 'Jeu',
           _limit: 6
         })
-    }
     },
 }
 </script>

@@ -15,6 +15,7 @@
         :search="search"
         :get-result-value="getResultValue"
         auto-select
+        :debounce-time="500"
         @submit="goToPageApp">
         </autocomplete>
         <div class="account">
