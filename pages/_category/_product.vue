@@ -83,15 +83,15 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
           <h2>Informations complémentaires</h2>
           <ul>
             <li>
-              <h3>Mise à jour</h3>
+              <h3>Update</h3>
               <span>10 Décembre</span>
             </li>
             <li>
-              <h3>Taille</h3>
+              <h3>Size</h3>
               <span>{{ app[0].size }}o</span>
             </li>
             <li>
-              <h3>Installation</h3>
+              <h3>Downloads</h3>
               <span>{{ app[0].installation }}+</span>
             </li>
             <li>
@@ -99,12 +99,13 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
               <span>{{ app[0].version }}</span>
             </li>
             <li>
-              <h3>Nécessite Android</h3>
+              <h3>Android Necessary</h3>
               <span>{{ app[0].androidNecessary }} ou supérieure</span>
             </li>
             <li>
-              <h3>Classification du contenu</h3>
-              <span v-if="app[0].toutPublic">Tout public</span>
+              <h3>For all public</h3>
+              <span v-if="app[0].toutPublic">Yes</span>
+              <span v-else>No/Don't know</span>
             </li>
           </ul>
         </div>
@@ -215,7 +216,7 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
         </div>
     </section>
     <div class="relatedProducts">
-      <h2>Articles similaires</h2>
+      <h2>Related apps</h2>
       <RelatedProduct v-for="(article, index) in relatedApps.slice(0,6)" :key="index" :data="article"/>
     </div>
   </div>
@@ -236,8 +237,9 @@ export default {
     this.app = await this.$strapi.find('apps', {
       slug: this.$route.params.product
     })
-    console.log(this.app[0].slider)
-    this.relatedApps = await this.$strapi.find('apps')    
+    this.relatedApps = await this.$strapi.find('apps',{
+      _limit: 6
+    })  
   },
   methods: {
       urlPicture(url){

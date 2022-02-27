@@ -92,6 +92,10 @@ export default {
       margin: 8px;
       width: 200px;
       cursor: pointer;
+      @include phone-only{
+          margin: 4px;
+          width: 200px;
+      }
       &:hover{
           img{
               filter: grayscale(1);
@@ -104,8 +108,7 @@ export default {
             max-width: 100%;
         }
       img{
-        width: 200px;
-        height: 200px;
+        width: 100%;
         object-fit: cover;
         margin: auto;
         transition: 0.4s;

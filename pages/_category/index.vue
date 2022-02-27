@@ -56,6 +56,12 @@ body{
     width: 100%;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    .article{
+      @include phone-only{
+        width: 40%;
+      }
+    }
   }
 }
 </style>
