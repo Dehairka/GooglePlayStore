@@ -7,7 +7,7 @@
       </div>
       <div class="articles">
       <!-- <SingleArticle v-for="(article, index) in apps" :key="index" :data="article"/> -->
-      <Slider />
+      <Slider :data="apps" />
     </div>
     </section>
     <section>
@@ -16,7 +16,7 @@
         <NuxtLink class="btn" to="/Jeu/">Plus</NuxtLink>
       </div>
       <div class="articles">
-      <Slider category="Jeu" />
+      <Slider :data="games" category="Jeu" />
     </div>
     </section>
   </div>
@@ -30,6 +30,71 @@ export default {
   data(){
     return{
       apps: [],
+      games: [],
+      defaultApps: [{
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      },
+      {
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      },
+      {
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      },
+      {
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      },
+      {
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      },
+      {
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      },
+      {
+        slug: "slug",
+        title: "title",
+        pictureProfile: {
+          url: "/assets/img/default.png"
+        },
+        pouce: 0,
+        creator: "creator"
+      }
+      ],
       swiperOptions: {
         pagination: {
           el: '.swiper-pagination'
@@ -37,7 +102,26 @@ export default {
         // Some Swiper option/callback...
       },
     }
-  }
+  },
+  async fetch(){
+    if(this.$cookies.isKey('apps')){
+      this.apps = JSON.parse(this.$cookies.get('apps'))
+      console.log("ON RECUP LE COOKIE", JSON.parse(this.$cookies.get('apps')))
+    }else{
+      this.apps = await this.$strapi.find('apps', {
+          category: 'Application',
+          _limit: 6
+        })
+        console.log("On créer le cookie")
+      window.$cookies.set('apps', JSON.stringify(this.apps))
+      console.log("ON RECUP LE COOKIE", JSON.parse(window.$cookies.get('apps')))
+
+        this.games = await this.$strapi.find('apps', {
+          category: 'Jeu',
+          _limit: 6
+        })
+    }
+    },
 }
 </script>
 
@@ -50,6 +134,10 @@ body{
 
 .homePage{
   padding: 0 32px;
+  @include phone-only{
+    padding: 0 8px;
+  }
+  
 
   section{
     .title{

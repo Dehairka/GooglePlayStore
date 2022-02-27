@@ -13,8 +13,10 @@
             <div class="avis">
                 <div class="stars">
             <svg
-id="Layer_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 485.027 485.027" style="enable-background:new 0 0 485.027 485.027;" xml:space="preserve">
+id="Layer_1"
+class="pointer"
+version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485.027 485.027"
+	 style="enable-background:new 0 0 485.027 485.027;" xml:space="preserve" @click="app[0].pouce++">
 <g>
 	<g>
 		<path

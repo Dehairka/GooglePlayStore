@@ -1,7 +1,7 @@
 <template>
   <div class="swiper">
-    <div class="swiper-wrapper">
-      <div v-for="(article, i) in apps.slice(0,6)" :key="i" class="swiper-slide" :class="`slide--${i}`">
+    <div v-if="data" class="swiper-wrapper">
+      <div v-for="(article, i) in data.slice(0,6)" :key="i" class="swiper-slide" :class="`slide--${i}`">
         <SingleArticle :data="article"/>
       </div>
     </div>
@@ -35,15 +35,7 @@ export default {
           apps: []
         }
       },
-    async fetch(){
-      if(this.category === ""){
-        this.apps = await this.$strapi.find('apps')
-      }else{
-        this.apps = await this.$strapi.find('apps', {
-          category: this.category
-        })
-      }
-    },
+    
   mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
     // previously it was before export default. Moved here for performance issues. Move back in case of problems.
