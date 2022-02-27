@@ -9,54 +9,14 @@
             <rect y="60" width="100" height="10"></rect>
           </svg>
         </h1>
-        <!-- <div class="search">
-          <input id="search" type="search" name="search" placeholder="Rechercher">
-          <a class="btn">
-<svg
-id="Capa_1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 487.95 487.95" style="enable-background:new 0 0 487.95 487.95;" xml:space="preserve">
-<g>
-	<g>
-		<path
-d="M481.8,453l-140-140.1c27.6-33.1,44.2-75.4,44.2-121.6C386,85.9,299.5,0.2,193.1,0.2S0,86,0,191.4s86.5,191.1,192.9,191.1
-			c45.2,0,86.8-15.5,119.8-41.4l140.5,140.5c8.2,8.2,20.4,8.2,28.6,0C490,473.4,490,461.2,481.8,453z M41,191.4
-			c0-82.8,68.2-150.1,151.9-150.1s151.9,67.3,151.9,150.1s-68.2,150.1-151.9,150.1S41,274.1,41,191.4z"/>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-</svg>
-
-          </a>
-        </div> -->
+        <autocomplete
+        class="search" 
+        placeholder="Search application"
+        :search="search"
+        :get-result-value="getResultValue"
+        auto-select
+        @submit="goToPageApp">
+        </autocomplete>
         <div class="account">
           <svg width="32px" height="32px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="black" @click="goToPage('/account')"><path d="M16 7.992C16 3.58 12.416 0 8 0S0 3.58 0 7.992c0 2.43 1.104 4.62 2.832 6.09.016.016.032.016.032.032.144.112.288.224.448.336.08.048.144.111.224.175A7.98 7.98 0 0 0 8.016 16a7.98 7.98 0 0 0 4.48-1.375c.08-.048.144-.111.224-.16.144-.111.304-.223.448-.335.016-.016.032-.016.032-.032 1.696-1.487 2.8-3.676 2.8-6.106zm-8 7.001c-1.504 0-2.88-.48-4.016-1.279.016-.128.048-.255.08-.383a4.17 4.17 0 0 1 .416-.991c.176-.304.384-.576.64-.816.24-.24.528-.463.816-.639.304-.176.624-.304.976-.4A4.15 4.15 0 0 1 8 10.342a4.185 4.185 0 0 1 2.928 1.166c.368.368.656.8.864 1.295.112.288.192.592.24.911A7.03 7.03 0 0 1 8 14.993zm-2.448-7.4a2.49 2.49 0 0 1-.208-1.024c0-.351.064-.703.208-1.023.144-.32.336-.607.576-.847.24-.24.528-.431.848-.575.32-.144.672-.208 1.024-.208.368 0 .704.064 1.024.208.32.144.608.336.848.575.24.24.432.528.576.847.144.32.208.672.208 1.023 0 .368-.064.704-.208 1.023a2.84 2.84 0 0 1-.576.848 2.84 2.84 0 0 1-.848.575 2.715 2.715 0 0 1-2.064 0 2.84 2.84 0 0 1-.848-.575 2.526 2.526 0 0 1-.56-.848zm7.424 5.306c0-.032-.016-.048-.016-.08a5.22 5.22 0 0 0-.688-1.406 4.883 4.883 0 0 0-1.088-1.135 5.207 5.207 0 0 0-1.04-.608 2.82 2.82 0 0 0 .464-.383 4.2 4.2 0 0 0 .624-.784 3.624 3.624 0 0 0 .528-1.934 3.71 3.71 0 0 0-.288-1.47 3.799 3.799 0 0 0-.816-1.199 3.845 3.845 0 0 0-1.2-.8 3.72 3.72 0 0 0-1.472-.287 3.72 3.72 0 0 0-1.472.288 3.631 3.631 0 0 0-1.2.815 3.84 3.84 0 0 0-.8 1.199 3.71 3.71 0 0 0-.288 1.47c0 .352.048.688.144 1.007.096.336.224.64.4.927.16.288.384.544.624.784.144.144.304.271.48.383a5.12 5.12 0 0 0-1.04.624c-.416.32-.784.703-1.088 1.119a4.999 4.999 0 0 0-.688 1.406c-.016.032-.016.064-.016.08C1.776 11.636.992 9.91.992 7.992.992 4.14 4.144.991 8 .991s7.008 3.149 7.008 7.001a6.96 6.96 0 0 1-2.032 4.907z"/></svg>
         </div>
@@ -84,6 +44,7 @@ export default {
   data(){
     return{
       menu: false,
+      appsSearched: [],
     }
   },
   methods: {
@@ -110,6 +71,25 @@ export default {
     },
     menuDisplay(){
       return this.menu ? 'display: flex' : 'display: none'
+    },
+    search(input){
+      return new Promise((resolve) => {
+        if (input.length < 3) {
+          return resolve([])
+        }
+        this.appsSearched = this.$strapi.find('apps', {
+          title_contains: input
+        })
+        resolve(this.appsSearched)
+      })
+    },
+    getResultValue(result) {
+      return result.title
+    },
+    goToPageApp(result){
+      this.$router.push({
+                path: '/categories/'+result.slug
+            })
     }
   }
 }
@@ -138,43 +118,15 @@ body{
       }
     }
     .search{
+      margin: 0 16px;
       flex: 1;
-      display: flex;
-
-      @include desktop{
-        width: 30%;
-        flex: inherit;
-      }
-
-      input, .btn{
-        border: solid 1px rgba(0,0,0,0.2);
-        width: 50%;
-        margin: 0;
-        padding: 0 10px;
-        height: 32px;
-      }
-      input{
-        border-right: none;
-        flex: 1;
-      }
-      .btn{
-        width: 24px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: $white;
-        fill: $white;
-        svg{
-          height: 20px;
-        }
+      .autocomplete-result-list{
+        z-index: 55!important;
       }
     }
     .account{
       display: flex;
       align-items: center;
-      padding: 0 16px;
-      margin: 16px;
     }
   }
   .menu{
