@@ -135,7 +135,7 @@ body{
     }
   }
   .menu{
-    background-color: rgba($color: #FFF, $alpha: 0.8);
+    background-color: rgba($color: #FFF, $alpha: 0.9);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -148,6 +148,7 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-weight: bold;
     ul{padding: 0;}
 
   }

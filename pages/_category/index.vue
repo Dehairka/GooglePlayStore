@@ -23,8 +23,7 @@ export default {
   },
   methods: {
     async loadMore(){
-        console.log("anus")
-        this.appsLoaded = await this.$strapi.find('apps', {
+        this.appsLoaded = await this.$strapi.$apps.find({
         category: this.$route.params.category,
         _sort: 'title:ASC',
         _start: this.apps.length,
