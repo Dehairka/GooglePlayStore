@@ -2,9 +2,9 @@
   <div class="categoryPage">
     <section>
       <div class="title">
-        <h1>{{ $route.params.category }}</h1>
+        <!-- <h1>{{ $route.params.category }}</h1> -->
       </div>
-      <div class="articles">
+      <div v-infinite-scroll="loadMore" class="articles">
       <SingleArticle v-for="(article, index) in apps" :key="index" :data="article"/>
     </div>
     </section>
@@ -18,12 +18,20 @@ export default {
   data(){
     return{
       apps: [],
+      appsLoaded: null
     }
   },
-  async fetch(){
-    this.apps = await this.$strapi.find('apps', {
-      category: this.$route.params.category
-    })
+  methods: {
+    async loadMore(){
+        console.log("anus")
+        this.appsLoaded = await this.$strapi.find('apps', {
+        category: this.$route.params.category,
+        _sort: 'title:ASC',
+        _start: this.apps.length,
+        _limit: 12
+      })
+      this.apps = this.apps.concat(this.appsLoaded)
+    }
   }
 }
 </script>
@@ -55,7 +63,7 @@ body{
     flex: 1;
     width: 100%;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 
     .article{
       @include phone-only{

@@ -91,6 +91,7 @@ export default {
       font-size: 0.8em;
       margin: 8px;
       width: 200px;
+      height: 300px;
       cursor: pointer;
       @include phone-only{
           margin: 4px;

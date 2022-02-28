@@ -31,7 +31,7 @@
       <div class="navBottom">
         <div v-if="!$device.isMobileOrTablet" class="navBottom_left">
           <h2><NuxtLink to="/">Home</NuxtLink></h2>
-          <span v-if="$route.name !== 'index'">|</span>
+          <span>|</span>
           <h2>{{routePath()}}</h2>
         </div>
         <!-- <NuxtLink class="btn" to="/newApp">Ajouter une application</NuxtLink> -->
@@ -52,6 +52,9 @@ export default {
     routePath(){
       if(this.$route.name === "index"){
         return
+      }
+      if(this.$route.params.category && !this.$route.params.product){
+        return this.$route.params.category
       }
       if(this.$route.params.product){
         return this.$route.params.product;
@@ -128,6 +131,7 @@ body{
     .account{
       display: flex;
       align-items: center;
+      padding: 8px;
     }
   }
   .menu{

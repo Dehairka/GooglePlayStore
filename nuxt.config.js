@@ -33,7 +33,8 @@ export default {
     { src: '@/plugins/vue-awesome-swiper', mode: 'client' },
     { src: '@/plugins/vue-read-more' },
     { src: '@/plugins/vue-cookies' },
-    { src: '@/plugins/autocomplete-vue' }
+    { src: '@/plugins/autocomplete-vue' },
+    { src: '@/plugins/vue-infinite-scroll' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -27,6 +27,7 @@
     "vue": "^2.6.14",
     "vue-awesome-swiper": "^4.1.1",
     "vue-cookies": "^1.7.4",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-read-more": "^1.1.1",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",

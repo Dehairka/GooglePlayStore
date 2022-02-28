@@ -3,7 +3,7 @@
     <section>
       <div class="title">
         <h1>Applications</h1>
-        <NuxtLink class="btn" to="/Application/">Plus</NuxtLink>
+        <NuxtLink class="btn" to="/Application/">More</NuxtLink>
       </div>
       <div class="articles">
       <!-- <SingleArticle v-for="(article, index) in apps" :key="index" :data="article"/> -->
@@ -13,7 +13,7 @@
     <section>
       <div class="title">
         <h1>Games</h1>
-        <NuxtLink class="btn" to="/Jeu/">Plus</NuxtLink>
+        <NuxtLink class="btn" to="/Jeu/">More</NuxtLink>
       </div>
       <div class="articles">
       <Slider :data="games" category="Jeu" />
@@ -106,11 +106,13 @@ export default {
   async fetch(){
       this.apps = await this.$strapi.find('apps', {
           category: 'Application',
-          _limit: 6
+          _limit: 6,
+          _sort: 'pouce:DESC'
         })
         this.games = await this.$strapi.find('apps', {
           category: 'Jeu',
-          _limit: 6
+          _limit: 6,
+          _sort: 'pouce:DESC'
         })
     },
 }
