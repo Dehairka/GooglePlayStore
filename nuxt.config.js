@@ -34,7 +34,8 @@ export default {
     { src: '@/plugins/vue-read-more' },
     { src: '@/plugins/vue-cookies' },
     { src: '@/plugins/autocomplete-vue' },
-    { src: '@/plugins/vue-infinite-scroll' }
+    { src: '@/plugins/vue-infinite-scroll' },
+    { src: '@/plugins/vue-konami-code' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -111,7 +112,8 @@ export default {
     '@nuxtjs/auth',
   ],
   strapi: {
-    url: "https://strapi.esteve.xyz" || "http://localhost:1337"
+    url: "https://strapi.esteve.xyz" || "http://localhost:1337",
+    entities: ['apps']
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
