@@ -84,8 +84,8 @@ d="M284.6,20.391c-28.2-20.7-67.2-8.8-68.8-8.3c-3.8,1.2-6.3,4.7-6.3,8.6v85.8c0,29
           <h2>Informations complémentaires</h2>
           <ul>
             <li>
-              <h3>Update</h3>
-              <span>10 Décembre</span>
+              <h3>Updated</h3>
+              <span>{{ app[0].updated_at.slice(0,10) }}</span>
             </li>
             <li>
               <h3>Size</h3>
